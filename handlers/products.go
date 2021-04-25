@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"github.com/gauravtripathi001/go-microservices/data"
 )
 
 type Products struct{
@@ -15,7 +16,7 @@ func NewProducts(l*log.Logger) *Products{
 }
 
 func (p*Products) ServeHTTP(rw http.ResponseWriter,h *http.ResponseWriter){
-	lp := data.getProducts()
+	lp := data.GetProducts()
 	d, err := json.Marshal(lp)
 	if err != nil{
 		http.Error(rw,"Unable to marshal json",http.StatusInternalServerError)
